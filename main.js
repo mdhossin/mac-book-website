@@ -14,7 +14,7 @@ function totalPrice(costId) {
 }
 //  update total price
 
-function totalCost(cost) {
+function totalCostPrice(cost) {
   const extraCostId = document.getElementById(cost + "Cost");
   const extraCost = parseInt(extraCostId.innerText);
   const totalPrice = document.getElementById("totalPrice");
@@ -28,7 +28,7 @@ document.getElementById("memorySmall").addEventListener("click", function () {
 });
 document.getElementById("memoryBig").addEventListener("click", function () {
   memoryCost.innerText = "180";
-  totalCost("memory");
+  totalCostPrice("memory");
   totalPrice("memory");
 });
 
@@ -39,13 +39,13 @@ document.getElementById("storageSmall").addEventListener("click", function () {
 
 document.getElementById("storageMedium").addEventListener("click", function () {
   storageCost.innerText = "100";
-  totalCost("storage");
+  totalCostPrice("storage");
   totalPrice("storage");
 });
 
 document.getElementById("storageBig").addEventListener("click", function () {
   storageCost.innerText = "180";
-  totalCost("storage");
+  totalCostPrice("storage");
   totalPrice("storage");
 });
 
@@ -57,22 +57,27 @@ document
   .getElementById("deliveryCharge")
   .addEventListener("click", function () {
     deliveryCost.innerText = "20";
-    totalCost("delivery");
+    totalCostPrice("delivery");
     totalPrice("delivery");
   });
+
+// update total discount
+
+function promoDiscount() {
+  const promoInput = document.getElementById("promoInput");
+  const promoValue = promoInput.value;
+  const totalPrice = document.getElementById("totalPrice");
+  const totalAmountCost = parseInt(totalPrice.innerText);
+  if (promoValue == "stevekaku") {
+    bonusTotal.innerText = totalAmountCost - (totalAmountCost * 20) / 100;
+    document.getElementById("promoButton").disabled = true;
+    promoInput.value = "";
+  } else {
+    alert("Please enter the write promo code");
+  }
+}
 
 //   add event handeler promo apply button
 document.getElementById("promoButton").addEventListener("click", function () {
   promoDiscount();
 });
-
-function promoDiscount() {
-  const promoInput = document.getElementById("promoInput");
-  const promoValue = promoInput.value;
-  const totalPrice = parseInt(bonusTotal.innerText);
-  if (promoValue == "stevekaku") {
-    bonusTotal.innerText = totalPrice - (totalPrice * 20) / 100;
-  } else {
-    alert("Please enter the write promo code");
-  }
-}

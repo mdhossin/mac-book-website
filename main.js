@@ -11,12 +11,12 @@ const grandTotalPrice = document.getElementById("grandTotal");
 
 //  update total price
 
-function totalCostPrice(cost) {
-  const extraCostId = document.getElementById(cost + "Cost");
+function totalCostPrice(costId) {
+  const extraCostId = document.getElementById(costId + "Cost");
   const extraCost = parseInt(extraCostId.innerText);
-  const bonusTotal = document.getElementById("bestPrice");
-  const totalAmount = parseInt(bonusTotal.innerText);
-  totalPrice.innerText = totalAmount + extraCost;
+  const bestPrice = document.getElementById("bestPrice");
+  const totalBestPrice = parseInt(bestPrice.innerText);
+  totalPrice.innerText = totalBestPrice + extraCost;
 }
 
 // update total price cost
@@ -26,10 +26,10 @@ function updateTotal() {
   const memoryCost = parseInt(memoryId.innerText);
   const storageCost = parseInt(storageId.innerText);
   const deliveryCost = parseInt(deliveryId.innerText);
-  const totalAmount = bestPriceCost + memoryCost + storageCost + deliveryCost;
-  totalPrice.innerText = totalAmount;
+  const totalCost = bestPriceCost + memoryCost + storageCost + deliveryCost;
+  totalPrice.innerText = totalCost;
   const grandTotal = document.getElementById("grandTotal");
-  grandTotal.innerText = totalAmount;
+  grandTotal.innerText = totalCost;
 }
 
 // add event listener memory button
@@ -81,9 +81,9 @@ function promoDiscount() {
   const promoInput = document.getElementById("promoInput");
   const promoValue = promoInput.value;
   const totalPrice = document.getElementById("totalPrice");
-  const totalCost = parseInt(totalPrice.innerText);
+  const totalCostAmount = parseInt(totalPrice.innerText);
   if (promoValue == "stevekaku") {
-    grandTotalPrice.innerText = totalCost - (totalCost * 20) / 100;
+    grandTotalPrice.innerText = totalCostAmount - (totalCostAmount * 20) / 100;
     document.getElementById("promoButton").disabled = true;
     promoInput.value = "";
   } else {
